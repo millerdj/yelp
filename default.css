@@ -1,0 +1,63 @@
+#header {
+  background-color: rgb(211,35,35);
+  height: 100px;
+  width: auto;
+}
+
+#center {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#input {
+  width: 75%;
+  border-radius: 25px;
+  padding-left: 5px;
+}
+
+#homepage {
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 10px #000;
+  font-size: 30px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#login {
+  text-align: center;
+  color: #fff;
+  border-color: #000;
+  border-radius: 5px;
+  border-width: 2px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#place {
+  width: auto;
+  margin-top: 50px;
+}
+
+#results {
+  width: 93%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1000px;
+}
+
+.list-left {
+  float: left;
+  width: 60%;
+  margin-left: 2%;
+}
+.list-right {
+  float: left;
+  width: 20%;
+  margin-top: 10px;
+  margin-right: 10%;
+}

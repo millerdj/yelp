@@ -25,17 +25,23 @@ search.addEventListener('click', function() {
 
 function item(data) {
   var item = document.createElement('div');
+  item.classList.add('row');
+  item.classList.add('panel');
+  item.classList.add('panel-default');
   var itemLeft = document.createElement('div');
-  var itemRight = document.createElement('div');
   itemLeft.classList.add('list-left');
+  var itemRight = document.createElement('div');
   itemRight.classList.add('list-right')
   var place = document.createElement('h3');
   var address = document.createElement('div');
+  var hours = document.createElement('p');
   place.textContent = data.name;
+  hours.textContent = 'Open: ' + data.hours;
   address.textContent = data.address;
   item.appendChild(itemLeft);
   item.appendChild(itemRight);
   itemLeft.appendChild(place);
+  itemLeft.appendChild(hours);
   itemRight.appendChild(address);
 
   return item;
