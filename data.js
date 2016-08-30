@@ -10,7 +10,7 @@ var places = [
     wifi: true,
     goodFor: 'Lunch',
     alcohol: 'Beer and Wine Only'
-},
+  },
   {
     name: 'Two Left Forks',
     address: '34212 Pacific Coast Hwy Dana Point, CA 92629',
