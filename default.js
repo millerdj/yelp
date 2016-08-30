@@ -4,8 +4,8 @@ search.addEventListener('click', function() {
   var input = document.getElementById('input');
   var word = input.value.toLowerCase();
   var matches = [];
-
-
+  var results = document.getElementById('results');
+  clear(results);
 
   //finds description of item and creates new array matches of matched text
   for (var i = 0; i < places.length; i++) {
@@ -16,7 +16,6 @@ search.addEventListener('click', function() {
       }
     }
   }
-  console.log(matches);
 
   for (var i = 0; i < matches.length; i++) {
     var results = document.getElementById('results');
@@ -26,14 +25,24 @@ search.addEventListener('click', function() {
 
 function item(data) {
   var item = document.createElement('div');
-  item.classList.add('panel')
-  item.classList.add('panel-default')
-  var place = document.createElement('h1');
-  var address = document.createElement('h3');
+  var itemLeft = document.createElement('div');
+  var itemRight = document.createElement('div');
+  itemLeft.classList.add('list-left');
+  itemRight.classList.add('list-right')
+  var place = document.createElement('h3');
+  var address = document.createElement('div');
   place.textContent = data.name;
   address.textContent = data.address;
-  item.appendChild(place);
-  item.appendChild(address);
+  item.appendChild(itemLeft);
+  item.appendChild(itemRight);
+  itemLeft.appendChild(place);
+  itemRight.appendChild(address);
 
   return item;
+}
+
+function clear(target) {
+  while(target.firstChild) {
+    target.removeChild(target.firstChild)
+  }
 }
