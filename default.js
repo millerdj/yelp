@@ -4,6 +4,7 @@ search.addEventListener('click', function() {
   var input = document.getElementById('input');
   var word = input.value.toLowerCase();
   var matches = [];
+  var select = [];
   var results = document.getElementById('results');
   clear(results);
 
@@ -33,6 +34,8 @@ function item(data) {
   var itemRight = document.createElement('div');
   itemRight.classList.add('list-right')
   var place = document.createElement('h3');
+  place.setAttribute('data-name', data.name);
+  place.classList.add('place-name')
   var address = document.createElement('div');
   var hours = document.createElement('p');
   place.textContent = data.name;
@@ -52,3 +55,11 @@ function clear(target) {
     target.removeChild(target.firstChild)
   }
 }
+
+
+document.body.addEventListener('click', function view(theEvent) {
+  if (theEvent.target.className.indexOf('place-name') !== -1) {
+    var name = theEvent.target.getAttribute('data-name');
+    console.log(name);
+  }
+});
