@@ -61,3 +61,20 @@
   margin-top: 10px;
   margin-right: 10%;
 }
+
+#individual {
+  width: 93%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1000px;
+}
+
+.back {
+  float: right;
+  margin-right: 10px;
+}
+
+.hover:hover {
+  color: rgb(51, 122, 183);
+  cursor: pointer;
+}
