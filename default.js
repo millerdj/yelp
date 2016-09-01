@@ -116,6 +116,6 @@ document.body.addEventListener('click', function rebound(theBack) {
   if (theBack.target.className.indexOf('back') !== -1) {
     results.classList.toggle('hidden');
     individual.classList.toggle('hidden');
-    clear(individual);
+    clear(select);
   }
 });
