@@ -34,7 +34,6 @@ function clear(target) {
 }
 
   // Displays the name and address of match after a place is selected from the results
-  // Appends name and address to head
   // Appends showReview and businessInfo to body
 function showMatch(match) {
   var details = document.createElement('div');
@@ -66,9 +65,27 @@ function showMatch(match) {
 function showReview(match) {
   var reviews = document.createElement('div');
   reviews.classList.add('col-sm-9');
+  reviews.setAttribute('id','all-reviews');
 
-  var row = document.createElement('div');
-  row.classList.add('row');
+  var addReview = document.createElement('div');
+  addReview.classList.add('row');
+
+  var button = document.createElement('button');
+  button.type = 'button';
+  button.classList.add('btn');
+  button.classList.add('btn-danger');
+  button.textContent = 'Write a Review';
+
+  var block = document.createElement('div');
+  block.classList.add('row');
+  block.classList.add('review');
+
+  var button = document.createElement('button');
+  button.type = 'button';
+  button.classList.add('btn');
+  button.classList.add('btn-danger');
+  button.setAttribute('id', 'review-button');
+  button.textContent = 'Write a Review';
 
   var name =  document.createElement('div');
   name.textContent = match.review[0];
@@ -79,12 +96,58 @@ function showReview(match) {
   review.textContent = match.review[1];
   review.classList.add('col-xs-9');
 
-  reviews.appendChild(row);
-  row.appendChild(name);
-  row.appendChild(review);
+  reviews.appendChild(block);
+  reviews.appendChild(addReview);
+  addReview.appendChild(button);
+  block.appendChild(name);
+  block.appendChild(review);
 
   return reviews;
 
+}
+
+function addReview() {
+  var reviews = document.getElementById('all-reviews');
+  reviews.classList.add('review-block');
+  var newReview = document.createElement('div');
+  var enterName = document.createElement('div');
+  enterName.classList.add('input-group');
+  enterName.classList.add('input-group-lg');
+  enterName.classList.add('col-sm-11');
+
+  var name = document.createElement('div');
+  name.textContent = 'Name: ';
+
+  var input = document.createElement('input');
+  input.type = 'text';
+  input.placeholder = 'John Doe...'
+  input.classList.add('form-control');
+
+  var descriptionLabel = document.createElement('div');
+  descriptionLabel.textContent = 'Review: ';
+
+  var description = document.createElement('textarea');
+  description.classList.add('form-control');
+  description.placeholder = 'Your review helps others learn about great local businesses.'
+  description.setAttribute('rows', '5');
+  description.setAttribute('id', 'description');
+
+  var submitReview = document.createElement('button');
+  submitReview.type = 'button';
+  submitReview.classList.add('btn');
+  submitReview.classList.add('btn-primary');
+  submitReview.classList.add('submit-review');
+  submitReview.textContent = 'Submit Review';
+
+  enterName.appendChild(name);
+  enterName.appendChild(input);
+  enterName.appendChild(descriptionLabel);
+  enterName.appendChild(description);
+  enterName.appendChild(submitReview);
+  newReview.appendChild(enterName);
+  reviews.appendChild(newReview);
+
+  return reviews;
 }
 
   //Appends the list of more business information to match page
@@ -189,6 +252,12 @@ document.body.addEventListener('click', function view(theEvent) {
   }
 });
 
+  //Add event listener for when write a review is selected, run showReview
+  document.body.addEventListener('click', function writeReview(write) {
+    if (write.target.id.indexOf('review-button') === 0) {
+      addReview();
+    }
+  });
 
   // flips between results and individual pages
   // revmoves match
