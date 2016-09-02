@@ -12,15 +12,17 @@
         <div class="col-sm-2" id="homepage">yelp</div>
         <div class="col-sm-8" id="center">
           <input type="text" name="search" placeholder="Search Here..." id="input">
-          <button type="button" name="search" id="search">SEARCH</button>
+          <button type="button" name="search" id="search" class="btn btn-default">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search
+          </button>
         </div>
         <div class="col-sm-2" id="login">Login</div>
       </div>
-      <div class="row" id="place">
+      <div class="row panel panel-default" id="place">
         <div id="results">
         </div>
         <div id="individual" class="row hidden">
-          <div class="back hover">Back to Search Results
+          <div class="col-sm-12 back hover">Back to Search Results
           </div>
         </div>
       </div>
