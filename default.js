@@ -65,10 +65,11 @@ function showMatch(match) {
 function showReview(match) {
   var reviews = document.createElement('div');
   reviews.classList.add('col-sm-9');
-  reviews.setAttribute('id','all-reviews');
+  reviews.setAttribute('id','review-column');
 
   var addReview = document.createElement('div');
   addReview.classList.add('row');
+  addReview.setAttribute('id', 'add-review');
 
   var button = document.createElement('button');
   button.type = 'button';
@@ -79,6 +80,8 @@ function showReview(match) {
   var block = document.createElement('div');
   block.classList.add('row');
   block.classList.add('review');
+  block.classList.add('review-list');
+  block.setAttribute('id', 'review-list');
 
   var button = document.createElement('button');
   button.type = 'button';
@@ -104,50 +107,6 @@ function showReview(match) {
 
   return reviews;
 
-}
-
-function addReview() {
-  var reviews = document.getElementById('all-reviews');
-  reviews.classList.add('review-block');
-  var newReview = document.createElement('div');
-  var enterName = document.createElement('div');
-  enterName.classList.add('input-group');
-  enterName.classList.add('input-group-lg');
-  enterName.classList.add('col-sm-11');
-
-  var name = document.createElement('div');
-  name.textContent = 'Name: ';
-
-  var input = document.createElement('input');
-  input.type = 'text';
-  input.placeholder = 'John Doe...'
-  input.classList.add('form-control');
-
-  var descriptionLabel = document.createElement('div');
-  descriptionLabel.textContent = 'Review: ';
-
-  var description = document.createElement('textarea');
-  description.classList.add('form-control');
-  description.placeholder = 'Your review helps others learn about great local businesses.'
-  description.setAttribute('rows', '5');
-  description.setAttribute('id', 'description');
-
-  var submitReview = document.createElement('button');
-  submitReview.type = 'button';
-  submitReview.classList.add('btn');
-  submitReview.classList.add('btn-primary');
-  submitReview.classList.add('submit-review');
-  submitReview.textContent = 'Submit Review';
-
-  enterName.appendChild(name);
-  enterName.appendChild(input);
-  enterName.appendChild(descriptionLabel);
-  enterName.appendChild(description);
-  enterName.appendChild(submitReview);
-  newReview.appendChild(enterName);
-  reviews.appendChild(newReview);
-
-  return reviews;
 }
 
   //Appends the list of more business information to match page
@@ -194,6 +153,79 @@ function businessInfo(match) {
 
   return info;
 
+}
+
+function addReview() {
+  var reviews = document.getElementById('review-column');
+  reviews.classList.add('review-block');
+  var newReview = document.createElement('div');
+  var enterName = document.createElement('div');
+  enterName.classList.add('input-group');
+  enterName.classList.add('input-group-lg');
+  enterName.classList.add('col-sm-11');
+
+  var name = document.createElement('div');
+  name.textContent = 'Name: ';
+
+  var input = document.createElement('input');
+  input.type = 'text';
+  input.placeholder = 'John Doe...'
+  input.classList.add('form-control');
+  input.setAttribute('id', 'reviewer-name');
+
+  var descriptionLabel = document.createElement('div');
+  descriptionLabel.textContent = 'Review: ';
+
+  var description = document.createElement('textarea');
+  description.classList.add('form-control');
+  description.placeholder = 'Your review helps others learn about great local businesses.'
+  description.setAttribute('rows', '5');
+  description.setAttribute('id', 'description');
+
+  var submitReview = document.createElement('button');
+  submitReview.type = 'button';
+  submitReview.classList.add('btn');
+  submitReview.classList.add('btn-primary');
+  submitReview.classList.add('submit-review');
+  submitReview.setAttribute('id', 'submit-review');
+  submitReview.textContent = 'Submit Review';
+
+  enterName.appendChild(name);
+  enterName.appendChild(input);
+  enterName.appendChild(descriptionLabel);
+  enterName.appendChild(description);
+  enterName.appendChild(submitReview);
+  newReview.appendChild(enterName);
+  reviews.appendChild(newReview);
+
+  return reviews;
+}
+
+  // appends the values from name and description as a new comment in the review column
+function submitReview() {
+  var list = document.getElementById('review-column');
+  var addReview = document.getElementById('add-review')
+  var nameEntered = document.getElementById('reviewer-name');
+  var name = nameEntered.value;
+  var descriptionEntered = document.getElementById('description');
+  var description = descriptionEntered.value;
+
+  var newReview = document.createElement('div');
+  newReview.classList.add('row'),
+  newReview.classList.add('review');
+  var newName = document.createElement('div');
+  newName.textContent = name;
+  newName.classList.add('col-xs-3');
+  newName.classList.add('center');
+  var newDescription = document.createElement('div');
+  newDescription.textContent = description;
+  newDescription.classList.add('col-xs-9')
+
+  newReview.appendChild(newName);
+  newReview.appendChild(newDescription);
+  list.insertBefore(newReview, addReview);
+
+  return list;
 }
 
   // Searches places, returns a match and appends the results
@@ -244,7 +276,6 @@ document.body.addEventListener('click', function view(theEvent) {
         }
       }
     }
-    console.log(match);
     for (var i = 0; i < match.length; i++) {
       var individual = document.getElementById('individual');
       individual.appendChild(showMatch(match[i]));
@@ -252,20 +283,27 @@ document.body.addEventListener('click', function view(theEvent) {
   }
 });
 
-  //Add event listener for when write a review is selected, run showReview
-  document.body.addEventListener('click', function writeReview(write) {
-    if (write.target.id.indexOf('review-button') === 0) {
-      addReview();
-    }
-  });
-
-  // flips between results and individual pages
-  // revmoves match
+// flips between results and individual pages
+// revmoves match
 document.body.addEventListener('click', function rebound(theBack) {
-  if (theBack.target.className.indexOf('back') !== -1) {
-    results.classList.toggle('hidden');
-    individual.classList.toggle('hidden');
-    var match = document.getElementsByClassName('match');
-    individual.removeChild(match[0]);
+if (theBack.target.className.indexOf('back') !== -1) {
+  results.classList.toggle('hidden');
+  individual.classList.toggle('hidden');
+  var match = document.getElementsByClassName('match');
+  individual.removeChild(match[0]);
+}
+});
+
+  //Add event listener for when write a review is selected, run showReview
+document.body.addEventListener('click', function writeReview(write) {
+  if (write.target.id.indexOf('review-button') === 0) {
+    addReview();
+  }
+});
+
+  //Add event listener that submits review and appends to reviews section
+document.body.addEventListener('click', function submitting(submit) {
+  if (submit.target.id.indexOf('submit-review') === 0) {
+    submitReview();
   }
 });
