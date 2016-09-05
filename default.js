@@ -44,6 +44,8 @@ function showMatch(match) {
   var place = document.createElement('h2');
   place.textContent = match.name;
   place.classList.add('col-sm-9');
+  place.setAttribute('id', 'match-place');
+  place.setAttribute('place-name', match.name)
   var address = document.createElement('h4');
   address.textContent = match.address;
   address.classList.add('col-sm-3');
@@ -77,12 +79,6 @@ function showReview(match) {
   button.classList.add('btn-danger');
   button.textContent = 'Write a Review';
 
-  var block = document.createElement('div');
-  block.classList.add('row');
-  block.classList.add('review');
-  block.classList.add('review-list');
-  block.setAttribute('id', 'review-list');
-
   var button = document.createElement('button');
   button.type = 'button';
   button.classList.add('btn');
@@ -90,20 +86,31 @@ function showReview(match) {
   button.setAttribute('id', 'review-button');
   button.textContent = 'Write a Review';
 
-  var name =  document.createElement('div');
-  name.textContent = match.review[0];
-  name.classList.add('col-xs-3');
-  name.classList.add('center');
+  for (var i = 0; i < match.review.length; i++) {
+    var block = document.createElement('div');
+    block.classList.add('row');
+    block.classList.add('review');
+    block.setAttribute('id', 'review-list');
 
-  var review = document.createElement('div');
-  review.textContent = match.review[1];
-  review.classList.add('col-xs-9');
+    var name =  document.createElement('div');
+    name.classList.add('col-xs-3');
+    name.classList.add('center');
+    name.textContent = match.review[i].commentor;
 
-  reviews.appendChild(block);
+    var description = document.createElement('div');
+    description.classList.add('col-xs-9');
+    description.textContent = match.review[i].description;
+
+    block.appendChild(name);
+    block.appendChild(description);
+    reviews.appendChild(block);
+  }
+
+
+
+  // reviews.appendChild(block);
   reviews.appendChild(addReview);
   addReview.appendChild(button);
-  block.appendChild(name);
-  block.appendChild(review);
 
   return reviews;
 
@@ -155,6 +162,7 @@ function businessInfo(match) {
 
 }
 
+ //Creates input form for submitting a new review.
 function addReview() {
   var reviews = document.getElementById('review-column');
   reviews.classList.add('review-block');
@@ -163,6 +171,7 @@ function addReview() {
   enterName.classList.add('input-group');
   enterName.classList.add('input-group-lg');
   enterName.classList.add('col-sm-11');
+  enterName.setAttribute('id', 'review-form');
 
   var name = document.createElement('div');
   name.textContent = 'Name: ';
@@ -206,20 +215,33 @@ function submitReview() {
   var list = document.getElementById('review-column');
   var addReview = document.getElementById('add-review')
   var nameEntered = document.getElementById('reviewer-name');
-  var name = nameEntered.value;
+  var commentor = nameEntered.value;
   var descriptionEntered = document.getElementById('description');
   var description = descriptionEntered.value;
 
+  var lateReview = {};
+  lateReview.commentor = commentor;
+  lateReview.description = description;
+  var placeName = document.getElementById('match-place');
+  var selectName = placeName.getAttribute('place-name');
+  for (var i = 0; i < places.length; i++) {
+      if (places[i].name.indexOf(selectName) === 0) {
+        places[i].review.push(lateReview);
+        console.log(places[i].review);
+    }
+  }
+
+
   var newReview = document.createElement('div');
-  newReview.classList.add('row'),
+  newReview.classList.add('row');
   newReview.classList.add('review');
   var newName = document.createElement('div');
-  newName.textContent = name;
+  newName.textContent = commentor;
   newName.classList.add('col-xs-3');
   newName.classList.add('center');
   var newDescription = document.createElement('div');
   newDescription.textContent = description;
-  newDescription.classList.add('col-xs-9')
+  newDescription.classList.add('col-xs-9');
 
   newReview.appendChild(newName);
   newReview.appendChild(newDescription);
@@ -263,9 +285,10 @@ document.body.addEventListener('click', function view(theEvent) {
     results.classList.add('hidden');
     var individual = document.getElementById('individual');
     individual.classList.toggle('hidden');
+    var individual = document.getElementById('individual');
     var name = theEvent.target.getAttribute('data-name');
     var match = [];
-    var individual = document.getElementById('individual');
+
 
     for (var i = 0; i < places.length; i++) {
       for (param in places[i]) {
@@ -305,5 +328,7 @@ document.body.addEventListener('click', function writeReview(write) {
 document.body.addEventListener('click', function submitting(submit) {
   if (submit.target.id.indexOf('submit-review') === 0) {
     submitReview();
+    var reviewForm = document.getElementById('review-form');
+    clear(reviewForm);
   }
 });
