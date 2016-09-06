@@ -10,6 +10,7 @@ var places = [
     wifi: 'Yes',
     goodFor: 'Lunch',
     alcohol: 'Beer and Wine Only',
+    rating: 4,
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.384822587955!2d-117.70416768522567!3d33.46533048076965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcf050a9c5d9d3%3A0x58cd1bf17376ec5c!2sThe+Shwack+Beach+Grill!5e0!3m2!1sen!2sus!4v1473178711659',
     images: ['https://lh3.google.com/u/0/d/0B7_6ySbBX3lsS1RMWEwxbEcxOWs=w1384-h652-k-iv1?v=1473178396347', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsanluRE9DWXBvTXM=w1384-h652-k-iv1?v=1473178397736', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsSVN3dTVFMHFFdXc=w1384-h652-k-iv1?v=1473178397736'],
     review: [{
@@ -32,6 +33,7 @@ var places = [
     wifi: 'Yes',
     goodFor: 'Dinner',
     alcohol: 'Full Bar',
+    rating: 4,
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.307077397647!2d-117.69732188387793!3d33.467355080769224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcf053ec31c47d%3A0xcdcf7ec13d241ddc!2sTwo+Left+Forks!5e0!3m2!1sen!2sus!4v1473179649210',
     images: ['https://lh3.google.com/u/0/d/0B7_6ySbBX3lsaWFldGsycWZjS28=w1280-h1276-k-iv1?v=1473178405185', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsdVAydnhpSWNkZ0U=w1280-h1276-k-iv1?v=1473178405185', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsOXdqQmVtN3dpMFE=w1280-h1276-k-iv1?v=1473178405185'],
     review: [{
@@ -49,6 +51,7 @@ var places = [
     wifi: 'No',
     goodFor: 'Dinner',
     alcohol: 'Full Bar',
+    rating: 3,
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.3876410898383!2d-117.70966428387797!3d33.46525708076973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcf05b9245ad2f%3A0xa0453d00ec40980!2sThe+Point+Restaurant+%26+Bar!5e0!3m2!1sen!2sus!4v1473183701026',
     images: ['https://lh3.google.com/u/0/d/0B7_6ySbBX3lsTzloelBnR2haREE=w1280-h1276-k-iv1?v=1473178401980', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsWkdSYkdtV0ljY3M=w1280-h1276-k-iv1?v=1473178401980', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsNV82TVpIYXdNQnc=w1280-h1276-k-iv1?v=1473178401980'],
     review: [{
@@ -66,6 +69,7 @@ var places = [
     wifi: 'No',
     goodFor: 'Dinner',
     alcohol: 'Full Bar',
+    rating: 4,
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.385663531189!2d-117.70859728387796!3d33.465308580769616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcf05bbe5b4c69%3A0x98a764fbff7460c6!2sCoastal+Kitchen!5e0!3m2!1sen!2sus!4v1473183821189',
     images: ['https://lh3.google.com/u/0/d/0B7_6ySbBX3lsMU9wNy1LNlFxRjQ=w1384-h652-k-iv1?v=1473178389439', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsN1RQX1k2ek1hdkU=w1384-h652-k-iv1?v=1473178390164', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsbWJzZmE5bjJwZzg=w1280-h975-k-iv1?v=1473178390164'],
     review: [{
@@ -83,6 +87,7 @@ var places = [
     wifi: 'No',
     goodFor: 'Breakfast',
     alcohol: 'No',
+    rating: 4,
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.3696356070745!2d-117.69342788387803!3d33.465725980769655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcf054c57e2b37%3A0x6ad611d58ec4476d!2sStacks+Pancake+House!5e0!3m2!1sen!2sus!4v1473183860271',
     images: ['https://lh3.google.com/u/0/d/0B7_6ySbBX3lsdjBtMUZ6eWpSRVk=w1280-h1276-k-iv1?v=1473178397736', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsSS13TFcxb0MtZkk=w1280-h1276-k-iv1?v=1473178399867', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsZklwMnlJUElNRTA=w1280-h1276-k-iv1?v=1473178400656'],
     review: [{
@@ -100,6 +105,7 @@ var places = [
     wifi: 'No',
     goodFor: 'Dinner',
     alcohol: 'Full Bar',
+    rating: 5,
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d832.0960096377142!2d-117.7035458707216!3d33.4653508987981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcf05a0db9307d%3A0x92281d1acbf96255!2s24462+Del+Prado+Ave%2C+Dana+Point%2C+CA+92629!5e0!3m2!1sen!2sus!4v1473184315160',
     images: ['https://lh3.google.com/u/0/d/0B7_6ySbBX3lsdXRSZ254WFFjODA=w1280-h1276-k-iv1?v=1473178396347', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsWTRYOHo4NndmMVk=w1280-h1276-k-iv1?v=1473178396347', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsQVdQRUxOYzRYNWs=w1280-h1276-k-iv1?v=1473178396347'],
     review: [{
@@ -117,6 +123,7 @@ var places = [
   wifi: 'No',
   goodFor: 'Dinner',
   alcohol: 'Full Bar',
+  rating: 3,
   map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.3112285720576!2d-117.69888458387786!3d33.467246980769126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcf0515c37b9c7%3A0xdb09ccde2b088fe1!2sTaco+Surf!5e0!3m2!1sen!2sus!4v1473183934420',
   images: ['https://lh3.google.com/u/0/d/0B7_6ySbBX3lsV2w1Q19hU1U4QWc=w1280-h1276-k-iv1?v=1473178400656', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lscXpwQzFUYXhkVjQ=w1280-h1276-k-iv1?v=1473178400656', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsWERCZC1abHNFWEE=w1280-h1276-k-iv1?v=1473178401980'],
   review: [{
@@ -134,6 +141,7 @@ var places = [
   wifi: 'No',
   goodFor: 'Breakfast',
   alcohol: 'No',
+  rating: 2,
   map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.335305917979!2d-117.70220568387782!3d33.46661998076953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcf050c2ef2ccb%3A0x30b758d16bf82103!2sHarbor+House+Cafe!5e0!3m2!1sen!2sus!4v1473183966358',
   images: ['https://lh3.google.com/u/0/d/0B7_6ySbBX3lsREJod3BJUlVjc3c=w1280-h975-k-iv1?v=1473178395644', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsQ0ZDWEV6dVpOYkk=w1280-h1276-k-iv1?v=1473178396347', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsaUw1cW9KNnlWbWs=w1280-h1276-k-iv1?v=1473178396347'],
   review: [{
@@ -151,6 +159,7 @@ var places = [
   wifi: 'Yes',
   goodFor: 'Lunch',
   alcohol: 'No',
+  rating: 4,
   map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.408334255889!2d-117.70902308387792!3d33.464718180769914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcf05b8d1dda7d%3A0x8de4bb79637e4ca9!2sTutor+and+Spunky&#39;s+Deli!5e0!3m2!1sen!2sus!4v1473183998352',
   images: ['https://lh3.google.com/u/0/d/0B7_6ySbBX3lsbEpqN01BU0RILXc=w1280-h1276-k-iv1?v=1473178401980', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsNF9aYk8yV0M5bXM=w1280-h1276-k-iv1?v=1473178401980', 'https://lh3.google.com/u/0/d/0B7_6ySbBX3lsUmFYRWYzWVdnUTQ=w1280-h1276-k-iv1?v=1473178404444'],
   review: [{

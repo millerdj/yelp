@@ -52,22 +52,50 @@ function showMatch(match) {
   head.appendChild(place);
   head.appendChild(address);
 
+  var rating = document.createElement('div');
+  rating.classList.add('row');
+  rating.setAttribute('id','rating');
+
   var body = document.createElement('div');
   body.classList.add('row');
   var images = document.createElement('div');
   images.classList.add('row');
   images.classList.add('images');
 
+  rating.appendChild(rate(match));
   images.appendChild(showMap(match));
   images.appendChild(showImages(match));
   body.appendChild(showReview(match));
   body.appendChild(businessInfo(match));
 
   details.appendChild(head);
+  details.appendChild(rating);
   details.appendChild(images);
   details.appendChild(body);
 
   return details;
+}
+
+function rate(match) {
+  var rating = document.createElement('div');
+  rating.className = ('col-sm-12');
+  for (var i = 0; i < 5; i++) {
+    var star = document.createElement('i');
+    star.className = ('fa fa-star-o fa-2x star');
+    star.setAttribute('aria-hidden', 'true');
+    star.setAttribute('data-rating', i);
+    rating.appendChild(star);
+
+  }
+  var stars = rating.getElementsByClassName('star');
+    for (var i = 0; i < match.rating; i++) {
+      if (stars[i].getAttribute('data-rating') < match.rating) {
+        stars[i].classList.remove('fa-star-o');
+        stars[i].classList.add('fa-star');
+      }
+    }
+
+  return rating;
 }
 
 function showMap(match) {
