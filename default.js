@@ -54,15 +54,45 @@ function showMatch(match) {
 
   var body = document.createElement('div');
   body.classList.add('row');
+  var images = document.createElement('div');
+  images.classList.add('row');
+  images.classList.add('images');
+
+  images.appendChild(showMap(match));
+  images.appendChild(showImages(match));
   body.appendChild(showReview(match));
   body.appendChild(businessInfo(match));
 
   details.appendChild(head);
+  details.appendChild(images);
   details.appendChild(body);
 
   return details;
 }
 
+function showMap(match) {
+  var mapBlock = document.createElement('div');
+  mapBlock.classList.add('col-md-6');
+  mapBlock.classList.add('map-block');
+  var map = document.createElement('iframe');
+  map.setAttribute('src', match.map)
+  map.classList.add('map');
+  mapBlock.appendChild(map);
+
+  return mapBlock;
+}
+
+function showImages(match) {
+  var imageBlock = document.createElement('div');
+  imageBlock.classList.add('col-md-6');
+  imageBlock.classList.add('map-block');
+  var image = document.createElement('img');
+  image.setAttribute('src', match.images[0]);
+  imageBlock.appendChild(image);
+  image.classList.add('place-image');
+
+  return imageBlock;
+}
   //Displays name and decription in review array in data object
 function showReview(match) {
   var reviews = document.createElement('div');

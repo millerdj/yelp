@@ -122,3 +122,23 @@
   border-bottom: 1px solid grey;
   padding-bottom: 15px;
 }
+
+.images {
+  height: 480px;
+}
+
+.map-block {
+  height: 100%;
+  padding: 0 !important;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.place-image {
+  width: 100%;
+  height: 100%;
+}
