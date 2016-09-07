@@ -153,20 +153,27 @@ function showReview(match) {
     var name =  document.createElement('div');
     name.classList.add('col-xs-3');
     name.classList.add('center');
+    name.classList.add('review-name');
     name.textContent = match.review[i].commentor;
 
+    var descriptionBlock = document.createElement('div');
+    descriptionBlock.classList.add('col-xs-9');
+
+    var rating = document.createElement('div');
+    rating.className = 'row';
+    rating.appendChild(rate(match));
+    descriptionBlock.appendChild(rating);
+
     var description = document.createElement('div');
-    description.classList.add('col-xs-9');
+    description.classList.add('row');
     description.textContent = match.review[i].description;
+    descriptionBlock.appendChild(description);
 
     block.appendChild(name);
-    block.appendChild(description);
+    block.appendChild(descriptionBlock);
     reviews.appendChild(block);
   }
 
-
-
-  // reviews.appendChild(block);
   reviews.appendChild(addReview);
   addReview.appendChild(button);
 
@@ -240,6 +247,12 @@ function addReview() {
   input.classList.add('form-control');
   input.setAttribute('id', 'reviewer-name');
 
+  var select = document.createElement('div');
+  select.textContent = 'Select your rating:';
+
+  var rating = document.createElement('div'); //add rating here
+  rating.appendChild(selectRating());
+
   var descriptionLabel = document.createElement('div');
   descriptionLabel.textContent = 'Review: ';
 
@@ -259,6 +272,8 @@ function addReview() {
 
   enterName.appendChild(name);
   enterName.appendChild(input);
+  enterName.appendChild(select);
+  enterName.appendChild(rating);
   enterName.appendChild(descriptionLabel);
   enterName.appendChild(description);
   enterName.appendChild(submitReview);
@@ -268,6 +283,38 @@ function addReview() {
   return reviews;
 }
 
+function selectRating() {
+  var rating = document.createElement('div');
+  rating.className = ('col-sm-12');
+  for (var i = 0; i < 5; i++) {
+    var star = document.createElement('i');
+    star.className = ('fa fa-star-o fa-2x comment-stars rating');
+    star.setAttribute('aria-hidden', 'true');
+    star.setAttribute('comment-rating', i+1);
+    rating.appendChild(star);
+  }
+
+
+  rating.addEventListener('click', function selectRate(theEvent) {
+    var stars = document.getElementsByClassName('comment-stars');
+    var rating = theEvent.target.getAttribute('comment-rating');
+    for (var i = 0; i < stars.length; i++) {
+      stars[i].classList.add('fa-star-o');
+      stars[i].classList.remove('current');
+      if (stars[i].getAttribute('comment-rating') === rating) {
+        stars[i].classList.add('current');
+      }
+      if (stars[i].getAttribute('comment-rating') <= rating) {
+      stars[i].classList.remove('fa-star-o')
+      stars[i].classList.add('fa-star');
+      }
+    }
+
+  });
+  return rating;
+}
+
+
   // appends the values from name and description as a new comment in the review column
 function submitReview() {
   var list = document.getElementById('review-column');
@@ -276,16 +323,19 @@ function submitReview() {
   var commentor = nameEntered.value;
   var descriptionEntered = document.getElementById('description');
   var description = descriptionEntered.value;
+  var star = document.getElementsByClassName('current');
+  var rating = star[0].getAttribute('comment-rating');
+
 
   var lateReview = {};
   lateReview.commentor = commentor;
   lateReview.description = description;
+  lateReview.rating = rating;
   var placeName = document.getElementById('match-place');
   var selectName = placeName.getAttribute('place-name');
   for (var i = 0; i < places.length; i++) {
       if (places[i].name.indexOf(selectName) === 0) {
         places[i].review.push(lateReview);
-        console.log(places[i].review);
     }
   }
 
@@ -297,12 +347,36 @@ function submitReview() {
   newName.textContent = commentor;
   newName.classList.add('col-xs-3');
   newName.classList.add('center');
+  newName.classList.add('review-name');
+
+  var newBlock = document.createElement('div');
+  newBlock.classList.add('col-xs-9');
+  var newRating = document.createElement('div');
+  newRating.classList.add('row');
+  for (var i = 0; i < 5; i++) {
+    var star = document.createElement('i');
+    star.className = ('fa fa-star-o fa-2x star');
+    star.setAttribute('aria-hidden', 'true');
+    star.setAttribute('data-rating', i);
+    newRating.appendChild(star);
+
+  }
+  var stars = newRating.getElementsByClassName('star');
+    for (var i = 0; i < rating; i++) {
+      if (stars[i].getAttribute('data-rating') < rating) {
+        stars[i].classList.remove('fa-star-o');
+        stars[i].classList.add('fa-star');
+      }
+    }
+
   var newDescription = document.createElement('div');
   newDescription.textContent = description;
-  newDescription.classList.add('col-xs-9');
+  newDescription.classList.add('row');
 
+  newBlock.appendChild(newRating);
+  newBlock.appendChild(newDescription);
   newReview.appendChild(newName);
-  newReview.appendChild(newDescription);
+  newReview.appendChild(newBlock);
   list.insertBefore(newReview, addReview);
 
   return list;
