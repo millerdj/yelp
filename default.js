@@ -62,7 +62,7 @@ function showMatch(match) {
   images.classList.add('row');
   images.classList.add('images');
 
-  rating.appendChild(rate(match));
+  rating.appendChild(showStars(match));
   images.appendChild(showMap(match));
   images.appendChild(showImages(match));
   body.appendChild(showReview(match));
@@ -76,7 +76,7 @@ function showMatch(match) {
   return details;
 }
 
-function rate(match) {
+function showStars(match) {
   var rating = document.createElement('div');
   rating.className = ('col-sm-12');
   for (var i = 0; i < 5; i++) {
@@ -135,12 +135,6 @@ function showReview(match) {
   button.type = 'button';
   button.classList.add('btn');
   button.classList.add('btn-danger');
-  button.textContent = 'Write a Review';
-
-  var button = document.createElement('button');
-  button.type = 'button';
-  button.classList.add('btn');
-  button.classList.add('btn-danger');
   button.setAttribute('id', 'review-button');
   button.textContent = 'Write a Review';
 
@@ -161,7 +155,17 @@ function showReview(match) {
 
     var rating = document.createElement('div');
     rating.className = 'row';
-    rating.appendChild(rate(match));
+    rating.setAttribute('id', match.review[i].commentor);
+    rating.appendChild(showStar());
+    console.log(match.review[i].rating);
+    var stars = rating.getElementsByClassName('star');
+    console.log(stars);
+    for (var key = 0; key < match.review[i].rating; key++) {
+      if (stars[key].getAttribute('data-rating') < match.review[i].rating) {
+        stars[key].classList.remove('fa-star-o');
+        stars[key].classList.add('fa-star');
+      }
+    }
     descriptionBlock.appendChild(rating);
 
     var description = document.createElement('div');
@@ -177,8 +181,21 @@ function showReview(match) {
   reviews.appendChild(addReview);
   addReview.appendChild(button);
 
+  // reviewRating(match);
   return reviews;
+}
 
+function showStar() {
+  var rating = document.createElement('div');
+  rating.className = ('col-sm-12');
+  for (var i = 0; i < 5; i++) {
+    var star = document.createElement('i');
+    star.className = ('fa fa-star-o fa-2x star');
+    star.setAttribute('aria-hidden', 'true');
+    star.setAttribute('data-rating', i);
+    rating.appendChild(star);
+  }
+  return rating;
 }
 
   //Appends the list of more business information to match page
@@ -379,8 +396,10 @@ function submitReview() {
   newReview.appendChild(newBlock);
   list.insertBefore(newReview, addReview);
 
+
   return list;
 }
+
 
   // Searches places, returns a match and appends the results
 var search = document.getElementById('search')
@@ -394,10 +413,11 @@ search.addEventListener('click', function() {
 
   //finds description of item and creates new array matches of matched text
   for (var i = 0; i < places.length; i++) {
-    for (param in places[i]) {
-      if (typeof places[i][param] === 'string') {
-        if(places[i][param].toLowerCase().indexOf(word) !== -1)
+    for (prop in places[i]) {
+      if (typeof places[i][prop] === 'string') {
+        if(places[i][prop].toLowerCase().indexOf(word) !== -1)
         matches.push(places[i]);
+        break;
       }
     }
   }
@@ -423,9 +443,9 @@ document.body.addEventListener('click', function view(theEvent) {
 
 
     for (var i = 0; i < places.length; i++) {
-      for (param in places[i]) {
-        if (typeof places[i][param] === 'string') {
-          if (places[i][param].indexOf(name) === 0) {
+      for (prop in places[i]) {
+        if (typeof places[i][prop] === 'string') {
+          if (places[i][prop].indexOf(name) === 0) {
             match.push(places[i]);
           }
         }
