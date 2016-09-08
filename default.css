@@ -1,7 +1,8 @@
 #header {
   background-color: rgb(211,35,35);
-  height: 100px;
+  height: 75px;
   width: auto;
+  margin-top: 0;
 }
 
 #center {
@@ -71,7 +72,6 @@
 
 .back {
   text-align: right;
-  margin-right: 10px;
 }
 
 .select{
@@ -100,11 +100,21 @@
   text-align: center;
 }
 
-.review {
+.list-group {
+  margin-top: 15px;
+}
+
+.review:first-child {
   width: 98%;
   border-top: 1px solid grey;
   border-bottom: 1px solid grey;
   padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.review {
+  width: 98%;auto;
+  border-bottom: 1px solid grey;
   padding-bottom: 15px;
 }
 
@@ -145,4 +155,18 @@
 
 .review-name {
   margin-top: 4.3em;
+}
+
+.review-text {
+  color: rgb(211,35,35);
+  font-weight: 500;
+  font-size: 32px;
+  border-bottom: 1px solid grey;
+  padding-left: 1em;
+  width: 98%;
+}
+
+.star-text {
+  padding-left: 10px;
+  font-size: 18px;
 }

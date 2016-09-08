@@ -76,6 +76,7 @@ function showMatch(match) {
   return details;
 }
 
+  //Shows the rating of the place
 function showStars(match) {
   var rating = document.createElement('div');
   rating.className = ('col-sm-12');
@@ -83,21 +84,40 @@ function showStars(match) {
     var star = document.createElement('i');
     star.className = ('fa fa-star-o fa-2x star');
     star.setAttribute('aria-hidden', 'true');
-    star.setAttribute('data-rating', i);
+    star.setAttribute('data-rating', i+1);
     rating.appendChild(star);
-
   }
+
+  var placeRatings = []
+  for (var i = 0; i < match.review.length; i++) {
+    placeRatings.push(match.review[i].rating);
+  }
+  var sum = placeRatings.reduce(function(a, b) {
+    return a + b;
+  }, 0);
+
+  var average = sum / placeRatings.length;
+  var averageRating = Math.round(average * 10) / 10;
+  match.rating = averageRating;
+
   var stars = rating.getElementsByClassName('star');
-    for (var i = 0; i < match.rating; i++) {
-      if (stars[i].getAttribute('data-rating') < match.rating) {
-        stars[i].classList.remove('fa-star-o');
-        stars[i].classList.add('fa-star');
-      }
+  for (var i = 0; i < average; i++) {
+    if (stars[i].getAttribute('data-rating') <= average) {
+      stars[i].classList.remove('fa-star-o');
+      stars[i].classList.add('fa-star');
     }
+  }
+
+  var text = document.createElement('span');
+  text.className = 'star-text';
+  text.textContent = averageRating + ' stars'
+
+  rating.appendChild(text);
 
   return rating;
 }
 
+ //Displays Map
 function showMap(match) {
   var mapBlock = document.createElement('div');
   mapBlock.classList.add('col-md-6');
@@ -110,6 +130,7 @@ function showMap(match) {
   return mapBlock;
 }
 
+  //Displays Images
 function showImages(match) {
   var imageBlock = document.createElement('div');
   imageBlock.classList.add('col-md-6');
@@ -121,11 +142,17 @@ function showImages(match) {
 
   return imageBlock;
 }
+
   //Displays name and decription in review array in data object
 function showReview(match) {
   var reviews = document.createElement('div');
   reviews.classList.add('col-sm-9');
   reviews.setAttribute('id','review-column');
+
+  var viewReview = document.createElement('div');
+  viewReview.className = 'row review-text';
+  viewReview.textContent = 'Reviews';
+  reviews.appendChild(viewReview);
 
   var addReview = document.createElement('div');
   addReview.classList.add('row');
@@ -142,7 +169,6 @@ function showReview(match) {
     var block = document.createElement('div');
     block.classList.add('row');
     block.classList.add('review');
-    block.setAttribute('id', 'review-list');
 
     var name =  document.createElement('div');
     name.classList.add('col-xs-3');
@@ -156,10 +182,8 @@ function showReview(match) {
     var rating = document.createElement('div');
     rating.className = 'row';
     rating.setAttribute('id', match.review[i].commentor);
-    rating.appendChild(showStar());
-    console.log(match.review[i].rating);
+    rating.appendChild(drawStars());
     var stars = rating.getElementsByClassName('star');
-    console.log(stars);
     for (var key = 0; key < match.review[i].rating; key++) {
       if (stars[key].getAttribute('data-rating') < match.review[i].rating) {
         stars[key].classList.remove('fa-star-o');
@@ -185,7 +209,8 @@ function showReview(match) {
   return reviews;
 }
 
-function showStar() {
+  //Draws five empty stars
+function drawStars() {
   var rating = document.createElement('div');
   rating.className = ('col-sm-12');
   for (var i = 0; i < 5; i++) {
@@ -300,6 +325,7 @@ function addReview() {
   return reviews;
 }
 
+  //Users can click on a star and assign rating to new review
 function selectRating() {
   var rating = document.createElement('div');
   rating.className = ('col-sm-12');
@@ -331,7 +357,6 @@ function selectRating() {
   return rating;
 }
 
-
   // appends the values from name and description as a new comment in the review column
 function submitReview() {
   var list = document.getElementById('review-column');
@@ -347,7 +372,7 @@ function submitReview() {
   var lateReview = {};
   lateReview.commentor = commentor;
   lateReview.description = description;
-  lateReview.rating = rating;
+  lateReview.rating = parseInt(rating, 10);
   var placeName = document.getElementById('match-place');
   var selectName = placeName.getAttribute('place-name');
   for (var i = 0; i < places.length; i++) {
@@ -400,7 +425,45 @@ function submitReview() {
   return list;
 }
 
+function updateStars () {
+  var match = []
+  var placeName = document.getElementById('match-place');
+  var selectName = placeName.getAttribute('place-name');
+  for (var i = 0; i < places.length; i++) {
+      if (places[i].name.indexOf(selectName) === 0) {
+        match.push(places[i]);
+    }
+  }
 
+  var placeRatings = []
+  for (var i = 0; i < match[0].review.length; i++) {
+    placeRatings.push(match[0].review[i].rating);
+  }
+  var sum = placeRatings.reduce(function(a, b) {
+    return a + b;
+  }, 0);
+
+  var average = sum / placeRatings.length;
+  var averageRating = Math.round(average * 10) / 10;
+
+  var rating = document.getElementById('rating');
+  var stars = rating.getElementsByClassName('star');
+  for (var i = 0; i < average; i++) {
+    if (stars[i].getAttribute('data-rating') <= average) {
+      stars[i].classList.remove('fa-star-o');
+      stars[i].classList.add('fa-star');
+    }
+    if (stars[i].getAttribute('data-rating') > average) {
+      stars[i].classList.remove('fa-star');
+      stars[i].classList.add('fa-star-o');
+    }
+  }
+
+  var text = rating.getElementsByClassName('star-text');
+  text[0].textContent = averageRating + ' stars';
+
+  return rating;
+}
   // Searches places, returns a match and appends the results
 var search = document.getElementById('search')
 search.addEventListener('click', function() {
@@ -415,9 +478,10 @@ search.addEventListener('click', function() {
   for (var i = 0; i < places.length; i++) {
     for (prop in places[i]) {
       if (typeof places[i][prop] === 'string') {
-        if(places[i][prop].toLowerCase().indexOf(word) !== -1)
+        if(places[i][prop].toLowerCase().indexOf(word) !== -1) {
         matches.push(places[i]);
         break;
+        }
       }
     }
   }
@@ -480,6 +544,7 @@ document.body.addEventListener('click', function writeReview(write) {
 document.body.addEventListener('click', function submitting(submit) {
   if (submit.target.id.indexOf('submit-review') === 0) {
     submitReview();
+    updateStars();
     var reviewForm = document.getElementById('review-form');
     clear(reviewForm);
   }
