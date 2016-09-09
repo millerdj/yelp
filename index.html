@@ -8,8 +8,34 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   </head>
   <body>
+    <div id="landing-page" class="hidden">
+      <div class="row landing-header">
+        <div class="row">
+
+        <div class="col-sm-2 homepage">yelp</div>
+        <div class="col-sm-10"></div>
+      </div>
+    </div>
+      <div class="row" id="landing-block">
+        <div class="overlay">
+          <div class="col-sm-12">
+            <h1 class="title">Discover the hottest businesses in your neighborhood</h1>
+            <h4 class="subtitle">Search in your area</h4>
+            <div class="row">
+              <div class="input-group search-block">
+                <input type="text" class="form-control input-lg" name="search" placeholder="..." id="landing-input">
+                <span class="input-group-btn">
+                  <button type="button" name="search" class="btn btn-danger btn-lg" id="landing-search">Search!</button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row search-header"></div>
+    </div>
     <div class="container">
-      <div class="row" id="header">
+      <div class="row search-header">
         <div class="col-sm-2" id="homepage">yelp</div>
         <div class="col-sm-8" id="center">
           <input type="text" name="search" placeholder="Search Here..." id="input">
@@ -28,6 +54,8 @@
           <div class="col-sm-2 back hover">Back to Search Results
           </div>
         </div>
+      </div>
+      <div class="row search-header">
       </div>
     </div>
     <script src="data.js"></script>

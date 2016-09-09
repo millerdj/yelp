@@ -1,8 +1,9 @@
-#header {
+.search-header {
   background-color: rgb(211,35,35);
   height: 75px;
   width: auto;
-  margin-top: 0;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 #center {
@@ -43,13 +44,14 @@
   width: auto;
   margin-top: 50px;
   padding-bottom: 20px;
+  margin-bottom: 0;
 }
 
 #results {
   width: 93%;
   margin-left: auto;
   margin-right: auto;
-  height: 1000px;
+  height: 750px;
 }
 
 .list-left {
@@ -113,7 +115,7 @@
 }
 
 .review {
-  width: 98%;auto;
+  width: 98%;
   border-bottom: 1px solid grey;
   padding-bottom: 15px;
 }
@@ -169,4 +171,61 @@
 .star-text {
   padding-left: 10px;
   font-size: 18px;
+}
+
+.homepage {
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 10px #000;
+  font-size: 30px;
+  position: relative;
+  margin-top: 10px;
+}
+
+.landing-header {
+  background-color: rgb(211,35,35);
+  height: 75px;
+  width: auto;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+#landing-block {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background-image: url('http://cdn.wonderfulengineering.com/wp-content/uploads/2014/05/brick-wallpaper-4.jpg');
+  background-size: cover;
+  margin: 0;
+  background-attachment: fixed;
+}
+
+.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.title {
+  position: relative;
+  text-align: center;
+  margin-top: 150px;
+  color: rgb(255, 255, 255);
+}
+
+.subtitle {
+  margin-top: 20px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+.search-block {
+  position: relative;
+  margin-left: auto;
+  margin: auto;
+}
+
+.search-block {
+  margin-top: 50px;
+  width: 35%;
 }
