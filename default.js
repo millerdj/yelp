@@ -1,4 +1,29 @@
-  // Renders matches of search function
+// Finds search match
+function search(input) {
+  var word = input.value.toLowerCase();
+  var matches = [];
+  var results = document.getElementById('results');
+  clear(results);
+
+  //finds description of item and creates new array matches of matched text
+  for (var i = 0; i < places.length; i++) {
+    for (prop in places[i]) {
+      if (typeof places[i][prop] === 'string') {
+        if(places[i][prop].toLowerCase().indexOf(word) !== -1) {
+          matches.push(places[i]);
+          break;
+        }
+      }
+    }
+  }
+
+  for (var i = 0; i < matches.length; i++) {
+    var results = document.getElementById('results');
+    results.appendChild(item(matches[i]));
+  }
+}
+
+// Renders matches of search function
 function item(data) {
   var item = document.createElement('div');
   item.classList.add('row');
@@ -26,15 +51,15 @@ function item(data) {
   return item;
 }
 
-  // Clears all block elements in a parent element
+// Clears all block elements in a parent element
 function clear(target) {
   while(target.firstChild) {
     target.removeChild(target.firstChild)
   }
 }
 
-  // Displays the name and address of match after a place is selected from the results
-  // Appends showReview and businessInfo to body
+// Displays the name and address of match after a place is selected from the results
+// Appends showReview and businessInfo to body
 function showMatch(match) {
   var details = document.createElement('div');
   details.classList.add('match');
@@ -63,8 +88,8 @@ function showMatch(match) {
   images.classList.add('images');
 
   rating.appendChild(showStars(match));
-  images.appendChild(showMap(match));
   images.appendChild(showImages(match));
+  images.appendChild(showMap(match));
   body.appendChild(showReview(match));
   body.appendChild(businessInfo(match));
 
@@ -76,7 +101,7 @@ function showMatch(match) {
   return details;
 }
 
-  //Shows the rating of the place
+//Shows the rating of the place
 function showStars(match) {
   var rating = document.createElement('div');
   rating.className = ('col-sm-12');
@@ -117,7 +142,7 @@ function showStars(match) {
   return rating;
 }
 
- //Displays Map
+//Displays Map
 function showMap(match) {
   var mapBlock = document.createElement('div');
   mapBlock.classList.add('col-md-6');
@@ -130,7 +155,7 @@ function showMap(match) {
   return mapBlock;
 }
 
-  //Displays Images
+//Displays Images
 function showImages(match) {
   var imageBlock = document.createElement('div');
   imageBlock.classList.add('col-md-6');
@@ -143,7 +168,7 @@ function showImages(match) {
   return imageBlock;
 }
 
-  //Displays name and decription in review array in data object
+//Displays name and decription in review array in data object
 function showReview(match) {
   var reviews = document.createElement('div');
   reviews.classList.add('col-sm-9');
@@ -209,7 +234,7 @@ function showReview(match) {
   return reviews;
 }
 
-  //Draws five empty stars
+//Draws five empty stars
 function drawStars() {
   var rating = document.createElement('div');
   rating.className = ('col-sm-12');
@@ -223,7 +248,7 @@ function drawStars() {
   return rating;
 }
 
-  //Appends the list of more business information to match page
+//Appends the list of more business information to match page
 function businessInfo(match) {
 
   var info = document.createElement('div');
@@ -269,7 +294,7 @@ function businessInfo(match) {
 
 }
 
- //Creates input form for submitting a new review.
+//Creates input form for submitting a new review.
 function addReview() {
   var reviews = document.getElementById('review-column');
   reviews.classList.add('review-block');
@@ -325,7 +350,7 @@ function addReview() {
   return reviews;
 }
 
-  //Users can click on a star and assign rating to new review
+//Users can click on a star and assign rating to new review
 function selectRating() {
   var rating = document.createElement('div');
   rating.className = ('col-sm-12');
@@ -348,8 +373,8 @@ function selectRating() {
         stars[i].classList.add('current');
       }
       if (stars[i].getAttribute('comment-rating') <= rating) {
-      stars[i].classList.remove('fa-star-o')
-      stars[i].classList.add('fa-star');
+        stars[i].classList.remove('fa-star-o')
+        stars[i].classList.add('fa-star');
       }
     }
 
@@ -357,7 +382,7 @@ function selectRating() {
   return rating;
 }
 
-  // appends the values from name and description as a new comment in the review column
+//Appends the values from name and description as a new comment in the review column
 function submitReview() {
   var list = document.getElementById('review-column');
   var addReview = document.getElementById('add-review')
@@ -376,8 +401,8 @@ function submitReview() {
   var placeName = document.getElementById('match-place');
   var selectName = placeName.getAttribute('place-name');
   for (var i = 0; i < places.length; i++) {
-      if (places[i].name.indexOf(selectName) === 0) {
-        places[i].review.push(lateReview);
+    if (places[i].name.indexOf(selectName) === 0) {
+      places[i].review.push(lateReview);
     }
   }
 
@@ -404,12 +429,12 @@ function submitReview() {
 
   }
   var stars = newRating.getElementsByClassName('star');
-    for (var i = 0; i < rating; i++) {
-      if (stars[i].getAttribute('data-rating') < rating) {
-        stars[i].classList.remove('fa-star-o');
-        stars[i].classList.add('fa-star');
-      }
+  for (var i = 0; i < rating; i++) {
+    if (stars[i].getAttribute('data-rating') < rating) {
+      stars[i].classList.remove('fa-star-o');
+      stars[i].classList.add('fa-star');
     }
+  }
 
   var newDescription = document.createElement('div');
   newDescription.textContent = description;
@@ -425,13 +450,14 @@ function submitReview() {
   return list;
 }
 
+//Calculates new average rati.ng for business and redraws business rating on new review submission
 function updateStars () {
   var match = []
   var placeName = document.getElementById('match-place');
   var selectName = placeName.getAttribute('place-name');
   for (var i = 0; i < places.length; i++) {
-      if (places[i].name.indexOf(selectName) === 0) {
-        match.push(places[i]);
+    if (places[i].name.indexOf(selectName) === 0) {
+      match.push(places[i]);
     }
   }
 
@@ -448,7 +474,7 @@ function updateStars () {
 
   var rating = document.getElementById('rating');
   var stars = rating.getElementsByClassName('star');
-  for (var i = 0; i < average; i++) {
+  for (var i = 0; i < stars.length; i++) {
     if (stars[i].getAttribute('data-rating') <= average) {
       stars[i].classList.remove('fa-star-o');
       stars[i].classList.add('fa-star');
@@ -464,37 +490,30 @@ function updateStars () {
 
   return rating;
 }
-  // Searches places, returns a match and appends the results
-var search = document.getElementById('search')
-search.addEventListener('click', function() {
-  var input = document.getElementById('input');
-  var word = input.value.toLowerCase();
-  var matches = [];
-  var select = [];
-  var results = document.getElementById('results');
-  clear(results);
 
-  //finds description of item and creates new array matches of matched text
-  for (var i = 0; i < places.length; i++) {
-    for (prop in places[i]) {
-      if (typeof places[i][prop] === 'string') {
-        if(places[i][prop].toLowerCase().indexOf(word) !== -1) {
-        matches.push(places[i]);
-        break;
-        }
-      }
-    }
+//Filters where search is being called and then runs appropriate search function
+document.body.addEventListener('click', function searchAnywhere(theEvent) {
+  if (theEvent.target.id === 'search') {
+    var input = document.getElementById('input');
   }
-
-  for (var i = 0; i < matches.length; i++) {
-    var results = document.getElementById('results');
-    results.appendChild(item(matches[i]));
+  if (theEvent.target.id === 'landing-search') {
+    var input = document.getElementById('landing-input');
   }
-
+  search(input);
 });
 
-  // Finds the results selected, hides results block and displays individual block
-  // Runs showMatch function and appends results to individual block
+//Hides landing page and shows results page when search occurs on landing page
+document.body.addEventListener('click', function viewResults(theSearch) {
+  if (theSearch.target.id === 'landing-search') {
+    var landingPage = document.getElementById('landing-page');
+    landingPage.classList.toggle('hidden');
+    var container = document.getElementById('container');
+    container.classList.toggle('hidden');
+  }
+});
+
+// Finds the results selected, hides results block and displays individual block
+// Runs showMatch function and appends results to individual block
 document.body.addEventListener('click', function view(theEvent) {
   if (theEvent.target.className.indexOf('place-name') !== -1) {
     var results = document.getElementById('results');
@@ -525,22 +544,22 @@ document.body.addEventListener('click', function view(theEvent) {
 // flips between results and individual pages
 // revmoves match
 document.body.addEventListener('click', function rebound(theBack) {
-if (theBack.target.className.indexOf('back') !== -1) {
-  results.classList.toggle('hidden');
-  individual.classList.toggle('hidden');
-  var match = document.getElementsByClassName('match');
-  individual.removeChild(match[0]);
-}
+  if (theBack.target.className.indexOf('back') !== -1) {
+    results.classList.toggle('hidden');
+    individual.classList.toggle('hidden');
+    var match = document.getElementsByClassName('match');
+    individual.removeChild(match[0]);
+  }
 });
 
-  //Add event listener for when write a review is selected, run showReview
+//Add event listener for when write a review is selected, run showReview
 document.body.addEventListener('click', function writeReview(write) {
   if (write.target.id.indexOf('review-button') === 0) {
     addReview();
   }
 });
 
-  //Add event listener that submits review and appends to reviews section
+//Add event listener that submits review and appends to reviews section
 document.body.addEventListener('click', function submitting(submit) {
   if (submit.target.id.indexOf('submit-review') === 0) {
     submitReview();

@@ -1,66 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Yelp: Derek Miller recreation</title>
-    <link rel="stylesheet" href="default.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-  </head>
-  <body>
-    <div id="landing-page" class="hidden">
-      <div class="row landing-header">
-        <div class="row">
-
+<head>
+  <meta charset="utf-8">
+  <title>Yelp: Derek Miller recreation</title>
+  <link rel="stylesheet" href="default.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body>
+  <div id="landing-page">
+    <div class="row landing-header">
+      <div class="row">
         <div class="col-sm-2 homepage">yelp</div>
         <div class="col-sm-10"></div>
       </div>
     </div>
-      <div class="row" id="landing-block">
-        <div class="overlay">
-          <div class="col-sm-12">
-            <h1 class="title">Discover the hottest businesses in your neighborhood</h1>
-            <h4 class="subtitle">Search in your area</h4>
-            <div class="row">
-              <div class="input-group search-block">
-                <input type="text" class="form-control input-lg" name="search" placeholder="..." id="landing-input">
-                <span class="input-group-btn">
-                  <button type="button" name="search" class="btn btn-danger btn-lg" id="landing-search">Search!</button>
-                </span>
-              </div>
-            </div>
+    <div class="row" id="landing-block">
+      <div class="overlay">
+        <div class="col-sm-12">
+          <h1 class="title">Discover the hottest businesses in your neighborhood</h1>
+          <h4 class="subtitle">Search in your area</h4>
+          <div class="input-group search-block">
+            <input type="text" class="form-control input-lg" name="search" placeholder="..." id="landing-input">
+            <span class="input-group-btn">
+              <button type="button" name="search" class="btn btn-danger btn-lg" id="landing-search">Search!</button>
+            </span>
           </div>
         </div>
-      </div>
-      <div class="row search-header"></div>
-    </div>
-    <div class="container">
-      <div class="row search-header">
-        <div class="col-sm-2" id="homepage">yelp</div>
-        <div class="col-sm-8" id="center">
-          <input type="text" name="search" placeholder="Search Here..." id="input">
-          <button type="button" name="search" id="search" class="btn btn-default">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search
-          </button>
-        </div>
-        <div class="col-sm-2" id="login"></div>
-      </div>
-      <div class="row panel panel-default" id="place">
-        <div id="results">
-        </div>
-        <div id="individual" class="row hidden">
-          <div class="col-sm-10">
-          </div>
-          <div class="col-sm-2 back hover">Back to Search Results
-          </div>
-        </div>
-      </div>
-      <div class="row search-header">
       </div>
     </div>
-    <script src="data.js"></script>
-    <script src="default.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" charset="utf-8"></script>
-  </body>
+    <div class="row business-owner">
+      <div class="col-sm-12">
+        <h1 class="business-title">Are you a business owner?</h1>
+        <h4 class="business-subtitle">Join our network of local businesses.</h4>
+        <div class="input-group add-business">
+          <input type="text" class="form-control input-lg" name="search" placeholder="Your Business Here..." id="business-input">
+          <span class="input-group-btn">
+            <button type="button" name="submit" class="btn btn-primary btn-lg" id="business-submit">Add Your Business</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="row features">
+      <div class="col-sm-4">
+        <div class="card">
+          <i class="fa fa-search fa-5x icon" aria-hidden="true"></i>
+        </div>
+        <h3 class="business-text">
+          Search thousands of businesses and reviews.
+        </h3>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <i class="fa fa-search fa-5x icon" aria-hidden="true"></i>
+        </div>
+        <h3 class="business-text">
+          Give each business a rating.
+        </h3>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <i class="fa fa-search fa-5x icon" aria-hidden="true"></i>
+        </div>
+        <h3 class="business-text">
+          Write a detailed review.
+        </h3>
+      </div>
+    </div>
+    <div class="row search-header"></div>
+  </div>
+  <div class="container hidden" id="container">
+    <div class="row search-header">
+      <div class="col-sm-2" id="homepage">yelp</div>
+      <div class="col-sm-8" id="center">
+        <input type="text" name="search" placeholder="Search Here..." class="search-text" id="input">
+        <button type="button" name="search" id="search" class="btn btn-default">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search
+        </button>
+      </div>
+      <div class="col-sm-2" id="login"></div>
+    </div>
+    <div class="row panel panel-default" id="place">
+      <div id="results">
+      </div>
+      <div id="individual" class="row hidden">
+        <div class="col-sm-10">
+        </div>
+        <div class="col-sm-2 back hover">Back to Search Results
+        </div>
+      </div>
+    </div>
+    <div class="row search-header">
+    </div>
+  </div>
+  <script src="data.js"></script>
+  <script src="default.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" charset="utf-8"></script>
+</body>
 </html>

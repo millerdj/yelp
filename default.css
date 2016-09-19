@@ -223,9 +223,57 @@
   position: relative;
   margin-left: auto;
   margin: auto;
-}
-
-.search-block {
+  margin-bottom: 50px;
   margin-top: 50px;
   width: 35%;
+}
+
+.business-title {
+  text-align: center;
+}
+
+.business-subtitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.add-business {
+  position: relative;
+  margin-left: auto;
+  margin: auto;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  width: 50%;
+}
+
+.card {
+  position: relative;
+  padding: 20px;
+  border: 2px solid grey;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3px;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: 150px;
+  width: 150px;
+}
+
+.icon {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.business-text {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 250px;
+  margin-bottom: 50px !important;
+}
+
+.features {
+  background-color: rgba(138 , 116, 116, 0.5);
 }
