@@ -19,24 +19,21 @@ function search(input) {
 
   for (var i = 0; i < matches.length; i++) {
     var results = document.getElementById('results');
-    results.appendChild(item(matches[i]));
+    results.appendChild(searchResults(matches[i]));
   }
 }
 
 // Renders matches of search function
-function item(data) {
+function searchResults(data) {
   var item = document.createElement('div');
-  item.classList.add('row');
-  item.classList.add('panel');
-  item.classList.add('panel-default');
+  item.className = 'row panel panel-default';
   var itemLeft = document.createElement('div');
   itemLeft.classList.add('list-left');
   var itemRight = document.createElement('div');
   itemRight.classList.add('list-right')
   var place = document.createElement('h3');
   place.setAttribute('data-name', data.name);
-  place.classList.add('hover');
-  place.classList.add('place-name')
+  place.className = 'hover place-name';
   var address = document.createElement('div');
   var hours = document.createElement('p');
   place.textContent = data.name;
@@ -64,8 +61,7 @@ function showMatch(match) {
   var details = document.createElement('div');
   details.classList.add('match');
   var head = document.createElement('div');
-  head.classList.add('head');
-  head.classList.add('row');
+  head.className = 'head row';
   var place = document.createElement('h2');
   place.textContent = match.name;
   place.classList.add('col-sm-9');
@@ -84,8 +80,7 @@ function showMatch(match) {
   var body = document.createElement('div');
   body.classList.add('row');
   var images = document.createElement('div');
-  images.classList.add('row');
-  images.classList.add('images');
+  images.className = 'row images';
 
   rating.appendChild(showStars(match));
   images.appendChild(showImages(match));
@@ -145,8 +140,7 @@ function showStars(match) {
 //Displays Map
 function showMap(match) {
   var mapBlock = document.createElement('div');
-  mapBlock.classList.add('col-md-6');
-  mapBlock.classList.add('map-block');
+  mapBlock.className = 'col-md-6 map-block';
   var map = document.createElement('iframe');
   map.setAttribute('src', match.map)
   map.classList.add('map');
@@ -158,8 +152,7 @@ function showMap(match) {
 //Displays Images
 function showImages(match) {
   var imageBlock = document.createElement('div');
-  imageBlock.classList.add('col-md-6');
-  imageBlock.classList.add('map-block');
+  imageBlock.className = 'col-md-6 map-block';
   var image = document.createElement('img');
   image.setAttribute('src', match.images[0]);
   imageBlock.appendChild(image);
@@ -185,20 +178,16 @@ function showReview(match) {
 
   var button = document.createElement('button');
   button.type = 'button';
-  button.classList.add('btn');
-  button.classList.add('btn-danger');
+  button.className = 'btn btn-danger'
   button.setAttribute('id', 'review-button');
   button.textContent = 'Write a Review';
 
   for (var i = 0; i < match.review.length; i++) {
     var block = document.createElement('div');
-    block.classList.add('row');
-    block.classList.add('review');
+    block.className = 'row review';
 
     var name =  document.createElement('div');
-    name.classList.add('col-xs-3');
-    name.classList.add('center');
-    name.classList.add('review-name');
+    name.className = 'col-xs-3 center review-name';
     name.textContent = match.review[i].commentor;
 
     var descriptionBlock = document.createElement('div');
@@ -230,7 +219,6 @@ function showReview(match) {
   reviews.appendChild(addReview);
   addReview.appendChild(button);
 
-  // reviewRating(match);
   return reviews;
 }
 
@@ -252,8 +240,7 @@ function drawStars() {
 function businessInfo(match) {
 
   var info = document.createElement('div');
-  info.classList.add('col-sm-3');
-  info.classList.add('list-group');
+  info.className = 'col-sm-3 list-group';
 
   var hours = document.createElement('li');
   hours.textContent = 'Open: ' + match.hours;
@@ -300,9 +287,7 @@ function addReview() {
   reviews.classList.add('review-block');
   var newReview = document.createElement('div');
   var enterName = document.createElement('div');
-  enterName.classList.add('input-group');
-  enterName.classList.add('input-group-lg');
-  enterName.classList.add('col-sm-11');
+  enterName.className = 'input-group input-group-lg col-sm-11';
   enterName.setAttribute('id', 'review-form');
 
   var name = document.createElement('div');
@@ -331,9 +316,7 @@ function addReview() {
 
   var submitReview = document.createElement('button');
   submitReview.type = 'button';
-  submitReview.classList.add('btn');
-  submitReview.classList.add('btn-primary');
-  submitReview.classList.add('submit-review');
+  submitReview.className = 'btn btn-primary submit-review';
   submitReview.setAttribute('id', 'submit-review');
   submitReview.textContent = 'Submit Review';
 
@@ -408,13 +391,10 @@ function submitReview() {
 
 
   var newReview = document.createElement('div');
-  newReview.classList.add('row');
-  newReview.classList.add('review');
+  newReview.className = 'row review';
   var newName = document.createElement('div');
   newName.textContent = commentor;
-  newName.classList.add('col-xs-3');
-  newName.classList.add('center');
-  newName.classList.add('review-name');
+  newName.className = 'col-xs-3 center review-name';
 
   var newBlock = document.createElement('div');
   newBlock.classList.add('col-xs-9');
@@ -450,7 +430,7 @@ function submitReview() {
   return list;
 }
 
-//Calculates new average rati.ng for business and redraws business rating on new review submission
+//Calculates new average rating for business and redraws business rating on new review submission
 function updateStars () {
   var match = []
   var placeName = document.getElementById('match-place');
